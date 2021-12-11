@@ -3,6 +3,9 @@ package spring_introduction;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
 public class Dog implements Pet{
 
@@ -13,10 +16,11 @@ public class Dog implements Pet{
     }
 
 
+    @PostConstruct
     public void init() {
         System.out.println("Class dog: init method");
     }
-
+    @PreDestroy
     public void destroy() {
         System.out.println("Class dog: method destroy");
     }
