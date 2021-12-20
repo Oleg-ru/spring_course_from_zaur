@@ -1,13 +1,11 @@
-package hibernate_test;
+package haibernate.hibernate_test;
 
-import hibernate_test.entity.Employee;
+import haibernate.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
-
-public class Test3 {
+public class Test5 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -18,15 +16,11 @@ public class Test3 {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
 
-//            List<Employee> employeeList = session
-//                    .createQuery("from Employee")
-//                    .getResultList();
-            List<Employee> employeeList = session
-                    .createQuery("from Employee " +
-                            "where name = 'Кузя' and salary > 1")
-                    .getResultList();
+//            Employee refEmp = session.get(Employee.class, 10);
+//            session.delete(refEmp);
 
-            employeeList.forEach(System.out::println);
+            session.createQuery("delete Employee where name='Кузя'")
+                    .executeUpdate();
 
 
             session.getTransaction().commit();

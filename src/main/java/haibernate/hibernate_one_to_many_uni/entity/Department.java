@@ -1,4 +1,4 @@
-package hibernate_one_to_many_bi.entity;
+package haibernate.hibernate_one_to_many_uni.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,12 +22,8 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
 
-    @OneToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.DETACH},
-            mappedBy = "department")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
     private List<Employee> emps;
 
     public Department() {
@@ -94,6 +90,5 @@ public class Department {
             emps = new ArrayList<>();
         }
         emps.add(employee);
-        employee.setDepartment(this); // !!!Важно!!!, что работник добавлялся именно в этот Department
     }
 }

@@ -1,11 +1,11 @@
-package hibernate_test;
+package haibernate.hibernate_test;
 
-import hibernate_test.entity.Employee;
+import haibernate.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test5 {
+public class Test4 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -15,12 +15,15 @@ public class Test5 {
         try {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
+//            Employee refEmp = session.get(Employee.class, 9);
+//            refEmp.setName("Кузя");
+//            refEmp.setSurname("Кушков");
+//            refEmp.setSalary(40);
 
-//            Employee refEmp = session.get(Employee.class, 10);
-//            session.delete(refEmp);
-
-            session.createQuery("delete Employee where name='Кузя'")
+            session
+                    .createQuery("update Employee set salary=550 where name='Кузя'")
                     .executeUpdate();
+
 
 
             session.getTransaction().commit();
