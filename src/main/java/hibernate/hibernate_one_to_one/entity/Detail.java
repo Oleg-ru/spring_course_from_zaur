@@ -1,4 +1,4 @@
-package haibernate.hibernate_one_to_one.entity;
+package hibernate.hibernate_one_to_one.entity;
 
 import javax.persistence.*;
 

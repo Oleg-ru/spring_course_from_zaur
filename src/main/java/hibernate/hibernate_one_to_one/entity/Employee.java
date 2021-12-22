@@ -1,4 +1,4 @@
-package haibernate.hibernate_test.entity;
+package hibernate.hibernate_one_to_one.entity;
 
 import javax.persistence.*;
 
@@ -17,6 +17,10 @@ public class Employee {
     private String department;
     @Column
     private int salary;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id")
+    private Detail empDetail;
 
     public Employee() {
     }
@@ -66,6 +70,14 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public Detail getEmpDetail() {
+        return empDetail;
+    }
+
+    public void setEmpDetail(Detail empDetail) {
+        this.empDetail = empDetail;
     }
 
     @Override
